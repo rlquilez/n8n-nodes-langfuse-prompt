@@ -1,0 +1,58 @@
+{
+	"name": "n8n-nodes-langfuse-prompt",
+	"version": "1.0.0",
+	"description": "Enhanced Langfuse nodes for n8n with advanced Prompt Management features",
+	"keywords": [
+		"n8n-community-node-package",
+		"langfuse",
+		"prompt-management",
+		"prompts",
+		"llm",
+		"ai"
+	],
+	"license": "MIT",
+	"homepage": "https://github.com/rlquilez/n8n-nodes-langfuse-prompt",
+	"author": {
+		"name": "Roberto Quilez",
+		"email": "rlquilez@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rlquilez/n8n-nodes-langfuse-prompt.git"
+	},
+	"engines": {
+		"node": ">=20.15"
+	},
+	"main": "index.js",
+	"scripts": {
+		"build": "npx rimraf dist && tsc && gulp build:icons",
+		"dev": "tsc --watch",
+		"format": "prettier nodes credentials --write",
+		"lint": "eslint nodes credentials package.json",
+		"lintfix": "eslint nodes credentials package.json --fix",
+		"prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"credentials": [
+			"dist/credentials/LangfuseApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Langfuse/Langfuse.node.js"
+		]
+	},
+	"devDependencies": {
+		"@typescript-eslint/parser": "~8.32.0",
+		"eslint": "^8.57.0",
+		"eslint-plugin-n8n-nodes-base": "^1.16.3",
+		"gulp": "^5.0.0",
+		"prettier": "^3.5.3",
+		"typescript": "^5.8.2"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
