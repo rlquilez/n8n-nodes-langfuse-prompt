@@ -29,14 +29,16 @@
 - **🔍 Get Prompt**: Retrieve specific prompts by name, version, or label
 - **📋 List Prompts**: Browse all prompts with advanced filtering and pagination
 - **➕ Create Prompt**: Create new text or chat prompts directly from n8n workflows
-- **✏️ Update Prompt**: Update prompt labels for environment management
+- **✏️ Update Prompt**: Update existing prompts with new content, config and metadata
+- **🗑️ Delete Prompt**: Remove prompts permanently from Langfuse
 
 ### 🚀 Advanced Capabilities
 - ✅ **Smart Filtering** - Filter by name, tags, and labels
 - ✅ **Pagination Support** - Handle large prompt collections efficiently
 - ✅ **Multiple Types** - Support for both text and chat prompts
-- ✅ **Label Management** - Deploy prompts across different environments
-- ✅ **Version Control** - Retrieve specific prompt versions
+- ✅ **Complete CRUD** - Full Create, Read, Update, Delete operations
+- ✅ **Version Control** - Retrieve and update specific prompt versions
+- ✅ **Optional Descriptions** - Choose whether to fetch prompt descriptions in list operations
 - ✅ **Bulk Operations** - Process multiple prompts efficiently
 
 ## 📦 Installation
@@ -132,6 +134,7 @@ Browse and search through all available prompts with pagination support.
 - `Limit` *(optional)*: Results per page (max: 100, default: 50)
 - `Name Filter` *(optional)*: Filter prompts by name
 - `Tag Filter` *(optional)*: Filter prompts by tag
+- `Include Description` *(optional)*: Checkbox to include prompt descriptions in response
 
 **Example Response:**
 ```json
@@ -141,7 +144,8 @@ Browse and search through all available prompts with pagination support.
       "name": "chatbot-prompt",
       "versions": [1, 2, 3],
       "lastUpdatedAt": "2024-01-15T10:30:00.000Z",
-      "tags": ["chatbot", "support"]
+      "tags": ["chatbot", "support"],
+      "description": "Customer support chatbot prompt"
     }
   ],
   "meta": {
@@ -182,12 +186,26 @@ Create new text or chat prompts directly from your n8n workflow.
 
 ### ✏️ Update Prompt
 
-Update labels on existing prompt versions for environment management.
+Update an existing prompt with new content, configuration, and metadata.
 
 **Parameters:**
 - `Prompt Name` *(required)*: Name of the prompt to update
-- `Version` *(required)*: Version number to update
-- `New Labels` *(required)*: New comma-separated labels
+- `Prompt Version` *(required)*: Version number to update
+- `Prompt Type` *(required)*: Either "text" or "chat"
+- `Prompt Content/Chat Messages` *(required)*: New content based on type
+- `Labels` *(optional)*: Comma-separated labels (default: "production")
+- `Tags` *(optional)*: Comma-separated tags
+- `Config` *(optional)*: JSON configuration object
+- `Commit Message` *(optional)*: Message describing the changes
+
+### 🗑️ Delete Prompt
+
+Delete a specific prompt permanently from Langfuse.
+
+**Parameters:**
+- `Prompt Name` *(required)*: Name of the prompt to delete
+
+**⚠️ Warning:** This operation is irreversible and will delete all versions of the prompt.
 
 ## 📝 Usage Examples
 
@@ -220,17 +238,47 @@ Create different prompt versions for testing:
 }
 ```
 
-### Example 3: Environment Promotion
+### Example 3: Complete Prompt Update
 
-Promote a tested prompt to production:
+Update an existing prompt with new content and configuration:
 
 ```json
 {
   "resource": "prompt",
   "operation": "update",
-  "updatePromptName": "chatbot-prompt",
-  "promptVersion": 3,
-  "newLabels": "production,live"
+  "updatePromptName": "customer-support-v2",
+  "promptVersion": 1,
+  "updatePromptType": "chat",
+  "updateChatMessages": "[{\"role\":\"system\",\"content\":\"You are an expert customer support agent\"},{\"role\":\"user\",\"content\":\"{{query}}\"}]",
+  "updateLabels": "production,improved",
+  "updateTags": "support,chat,v2",
+  "updateConfig": "{\"temperature\": 0.3, \"max_tokens\": 500}",
+  "updateCommitMessage": "Enhanced with better system prompt and configuration"
+}
+```
+
+### Example 4: List with Optional Descriptions
+
+Get all prompts with their descriptions included:
+
+```json
+{
+  "resource": "prompt",
+  "operation": "list",
+  "includeDescription": true,
+  "tagFilter": "production"
+}
+```
+
+### Example 5: Prompt Cleanup
+
+Delete outdated or unused prompts:
+
+```json
+{
+  "resource": "prompt",
+  "operation": "delete",
+  "deletePromptName": "deprecated-welcome-prompt"
 }
 ```
 
@@ -381,6 +429,17 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 This project is based on the original [n8n-nodes-langfuse](https://github.com/langfuse/n8n-nodes-langfuse) by the Langfuse team. We extend our sincere gratitude to the original authors for creating the foundation that made this enhanced version possible.
 
 ## 📈 Version History
+
+### v1.1.0 - Enhanced Operations
+- ✨ **New Delete Operation** - Remove prompts permanently from Langfuse
+- 🔧 **Enhanced Update Operation** - Now includes all fields from create operation (type, content, labels, tags, config, commit message)
+- 📋 **List with Descriptions** - Added optional checkbox to include prompt descriptions in list responses
+- 🎯 **Complete CRUD** - Full Create, Read, Update, Delete operations now available
+- 📝 **Better Documentation** - Updated with new operation examples and usage patterns
+
+### v1.0.1 - Naming Fix
+- 🔧 Fixed naming conflicts by renaming nodes and credentials to more specific names
+- 🚀 Resolved "entry with this name already exists" installation error
 
 ### v1.0.0 - Initial Release
 - ✨ Complete rebranding to `n8n-nodes-langfuse-prompt`
