@@ -87,23 +87,11 @@ export class LangfusePrompts implements INodeType {
 						name: 'Update Prompt',
 						value: 'update',
 						action: 'Update a prompt',
-						description: 'Update an existing prompt',
+						description: 'Update labels of an existing prompt version',
 						routing: {
 							request: {
-								method: 'PUT',
-								url: '=/api/public/v2/prompts/{{$parameter["updatePromptName"]}}',
-							},
-						},
-					},
-					{
-						name: 'Delete Prompt',
-						value: 'delete',
-						action: 'Delete a prompt',
-						description: 'Delete a specific prompt by name',
-						routing: {
-							request: {
-								method: 'DELETE',
-								url: '=/api/public/v2/prompts/{{$parameter["deletePromptName"]}}',
+								method: 'PATCH',
+								url: '=/api/public/v2/prompts/{{$parameter["promptName"]}}/versions/{{$parameter["promptVersion"]}}',
 							},
 						},
 					},
@@ -268,26 +256,6 @@ export class LangfusePrompts implements INodeType {
 					request: {
 						qs: {
 							label: '={{$value}}',
-						},
-					},
-				},
-			},
-			{
-				displayName: 'Include Description',
-				name: 'includeDescription',
-				type: 'boolean',
-				default: false,
-				description: 'Whether to include the description of each prompt in the response',
-				displayOptions: {
-					show: {
-						resource: ['prompt'],
-						operation: ['list'],
-					},
-				},
-				routing: {
-					request: {
-						qs: {
-							includeDescription: '={{$value}}',
 						},
 					},
 				},
@@ -506,178 +474,23 @@ export class LangfusePrompts implements INodeType {
 				},
 			},
 			{
-				displayName: 'Prompt Type',
-				name: 'updatePromptType',
-				type: 'options',
-				options: [
-					{
-						name: 'Text',
-						value: 'text',
-						description: 'Simple text prompt',
-					},
-					{
-						name: 'Chat',
-						value: 'chat',
-						description: 'Chat-style prompt with messages',
-					},
-				],
-				default: 'text',
-				required: true,
-				description: 'The type of prompt',
-				displayOptions: {
-					show: {
-						resource: ['prompt'],
-						operation: ['update'],
-					},
-				},
-				routing: {
-					request: {
-						body: {
-							type: '={{$value}}',
-						},
-					},
-				},
-			},
-			{
-				displayName: 'Prompt Content',
-				name: 'updatePromptContent',
-				type: 'string',
-				typeOptions: {
-					rows: 4,
-				},
-				required: true,
-				default: '',
-				description: 'The content of the text prompt',
-				displayOptions: {
-					show: {
-						resource: ['prompt'],
-						operation: ['update'],
-						updatePromptType: ['text'],
-					},
-				},
-				routing: {
-					request: {
-						body: {
-							prompt: '={{$value}}',
-						},
-					},
-				},
-			},
-			{
-				displayName: 'Chat Messages',
-				name: 'updateChatMessages',
-				type: 'json',
-				required: true,
-				default: '[\n  {\n    "role": "system",\n    "content": "You are a helpful assistant"\n  },\n  {\n    "role": "user",\n    "content": "{{question}}"\n  }\n]',
-				description: 'Array of chat messages with role and content',
-				displayOptions: {
-					show: {
-						resource: ['prompt'],
-						operation: ['update'],
-						updatePromptType: ['chat'],
-					},
-				},
-				routing: {
-					request: {
-						body: {
-							prompt: '={{JSON.parse($value)}}',
-						},
-					},
-				},
-			},
-			{
-				displayName: 'Labels',
-				name: 'updateLabels',
-				type: 'string',
-				default: 'production',
-				description: 'Comma-separated list of labels for the prompt',
-				displayOptions: {
-					show: {
-						resource: ['prompt'],
-						operation: ['update'],
-					},
-				},
-				routing: {
-					request: {
-						body: {
-							labels: '={{$value.split(",").map(l => l.trim()).filter(l => l)}}',
-						},
-					},
-				},
-			},
-			{
-				displayName: 'Tags',
-				name: 'updateTags',
-				type: 'string',
-				default: '',
-				description: 'Comma-separated list of tags for the prompt (optional)',
-				displayOptions: {
-					show: {
-						resource: ['prompt'],
-						operation: ['update'],
-					},
-				},
-				routing: {
-					request: {
-						body: {
-							tags: '={{$value ? $value.split(",").map(t => t.trim()).filter(t => t) : []}}',
-						},
-					},
-				},
-			},
-			{
-				displayName: 'Config (JSON)',
-				name: 'updateConfig',
-				type: 'json',
-				default: '{}',
-				description: 'Configuration object for the prompt (optional)',
-				displayOptions: {
-					show: {
-						resource: ['prompt'],
-						operation: ['update'],
-					},
-				},
-				routing: {
-					request: {
-						body: {
-							config: '={{JSON.parse($value)}}',
-						},
-					},
-				},
-			},
-			{
-				displayName: 'Commit Message',
-				name: 'updateCommitMessage',
-				type: 'string',
-				default: '',
-				description: 'Optional commit message for the prompt version',
-				displayOptions: {
-					show: {
-						resource: ['prompt'],
-						operation: ['update'],
-					},
-				},
-				routing: {
-					request: {
-						body: {
-							commitMessage: '={{$value || null}}',
-						},
-					},
-				},
-			},
-
-			// Delete Prompt fields
-			{
-				displayName: 'Prompt Name',
-				name: 'deletePromptName',
+				displayName: 'New Labels',
+				name: 'newLabels',
 				type: 'string',
 				required: true,
 				default: '',
-				description: 'Name of the prompt to delete',
+				description: 'Comma-separated list of new labels to assign to this prompt version',
 				displayOptions: {
 					show: {
 						resource: ['prompt'],
-						operation: ['delete'],
+						operation: ['update'],
+					},
+				},
+				routing: {
+					request: {
+						body: {
+							newLabels: '={{$value.split(",").map(l => l.trim()).filter(l => l)}}',
+						},
 					},
 				},
 			},
