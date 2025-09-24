@@ -38,10 +38,10 @@
 	"n8n": {
 		"n8nNodesApiVersion": 1,
 		"credentials": [
-			"dist/credentials/LangfuseApi.credentials.js"
+			"dist/credentials/LangfusePromptsApi.credentials.js"
 		],
 		"nodes": [
-			"dist/nodes/Langfuse/Langfuse.node.js"
+			"dist/nodes/LangfusePrompts/LangfusePrompts.node.js"
 		]
 	},
 	"devDependencies": {

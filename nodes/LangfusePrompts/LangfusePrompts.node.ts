@@ -1,9 +1,9 @@
 import { INodeType, INodeTypeDescription } from 'n8n-workflow';
 
-export class Langfuse implements INodeType {
+export class LangfusePrompts implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Langfuse',
-		name: 'langfuse',
+		displayName: 'Langfuse Prompts',
+		name: 'langfusePrompts',
 		icon: 'file:langfuse.svg',
 		group: ['transform'],
 		version: 1,
@@ -15,7 +15,7 @@ export class Langfuse implements INodeType {
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'langfuseApi',
+				name: 'langfusePromptsApi',
 				required: true,
 			},
 		],

@@ -5,9 +5,9 @@ import {
 	ICredentialTestRequest,
 } from 'n8n-workflow';
 
-export class LangfuseApi implements ICredentialType {
-	name = 'langfuseApi';
-	displayName = 'Langfuse API';
+export class LangfusePromptsApi implements ICredentialType {
+	name = 'langfusePromptsApi';
+	displayName = 'Langfuse Prompts API';
 	documentationUrl = 'https://langfuse.com/docs/api#authentication';
 
 	properties: INodeProperties[] = [
