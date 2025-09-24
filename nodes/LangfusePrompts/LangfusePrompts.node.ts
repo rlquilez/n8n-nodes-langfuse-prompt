@@ -11,6 +11,7 @@ export class LangfusePrompts implements INodeType {
 		defaults: {
 			name: 'Langfuse Prompts',
 		},
+		usableAsTool: true,
 		inputs: ['main'],
 		outputs: ['main'],
 		credentials: [
@@ -302,26 +303,6 @@ export class LangfusePrompts implements INodeType {
 					request: {
 						qs: {
 							searchType: '={{$value === "both" ? ["id", "content"] : [$value]}}',
-						},
-					},
-				},
-			},
-			{
-				displayName: 'Include Description',
-				name: 'includeDescription',
-				type: 'boolean',
-				default: false,
-				description: 'Whether to include the description of each prompt in the response',
-				displayOptions: {
-					show: {
-						resource: ['prompt'],
-						operation: ['list'],
-					},
-				},
-				routing: {
-					request: {
-						qs: {
-							includeDescription: '={{$value}}',
 						},
 					},
 				},

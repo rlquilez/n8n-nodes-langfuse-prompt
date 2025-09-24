@@ -6,7 +6,26 @@
 
 [![npm version](https://badge.fury.io/js/n8n-nodes-langfuse-prompt.svg)](https://www.npmjs.com/package/n8n-nodes-langfuse-prompt)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![n8n Community Node](https://img.shields.io/badge/n8n-Community%20Node-FF6B6B.svg)](https://docs.n8n.io/integrations/community-nodes/)
+[![n8n Community Node](https://img.shields.io/badge/n8n-Community%20Node-FF6B6B.svg)](h## 📈 Version History
+
+### v1.3.0 - MCP Integration & UI Improvements
+- 🤖 **MCP Server Integration** - Added `usableAsTool: true` for compatibility with n8n's Model Context Protocol (MCP) workflows
+- 🔍 **Full Text Search** - Enhanced List Prompts with comprehensive search capabilities (Names & Tags, Full Text, Both)
+- 🎯 **Streamlined UI** - Removed optional "Include Description" checkbox from List Prompts operation for cleaner interface
+- 🚀 **AI Agent Compatible** - Can now be used as a tool by AI agents in MCP server environments
+- 📚 **Comprehensive Documentation** - Added detailed MCP integration guide and usage examples
+
+### v1.2.0 - Full Text Search Enhancement
+- 🔍 **Advanced Search** - Added full text search functionality with searchQuery and searchType parameters
+- 🎯 **Search Modes** - Support for "Names & Tags", "Full Text", and "Both" search types
+- 📊 **Enhanced Filtering** - Improved prompt discovery and content-based searching
+- ✅ **API Compliant** - Uses official Langfuse API v2 search parameters
+
+### v1.1.1 - API Compatibility Fix
+- 🔧 **Removed Unsupported Operations** - Removed Update and Delete operations (not supported by Langfuse public API v2)
+- ✅ **API Compliance** - Now only includes operations officially supported by Langfuse public API
+- 📝 **Clear Documentation** - Added explanation about API limitations and workarounds
+- 🎯 **Reliable Operations** - Focus on Create, Get, and List operations that work correctlydocs.n8n.io/integrations/community-nodes/)
 
 </div>
 
@@ -40,6 +59,8 @@
 - ✅ **Version Control** - Retrieve and update specific prompt versions
 - ✅ **Optional Descriptions** - Choose whether to fetch prompt descriptions in list operations
 - ✅ **Bulk Operations** - Process multiple prompts efficiently
+- ✅ **Full Text Search** - Search prompts by content using "Names & Tags", "Full Text", or "Both" modes
+- ✅ **MCP Server Integration** - Compatible as a tool in n8n's MCP (Model Context Protocol) server workflows
 
 ## 📦 Installation
 
@@ -78,6 +99,45 @@ cd n8n-nodes-langfuse-prompt
 docker build -t n8n-langfuse-prompt .
 docker run -it -p 5678:5678 n8n-langfuse-prompt
 ```
+
+## 🤖 MCP Server Integration
+
+This node is compatible with n8n's **Model Context Protocol (MCP) server** integration, making it usable as a tool in AI workflows.
+
+### What is MCP Integration?
+
+The MCP integration allows AI agents to use this Langfuse Prompts node as a tool during their reasoning process. When connected through MCP:
+
+- 🤖 **AI Agent Tool**: AI agents can automatically call Langfuse operations based on context
+- 🔄 **Dynamic Prompt Management**: AI can retrieve, search, and create prompts on-demand
+- 🎯 **Context-Aware Selection**: Intelligent prompt selection based on conversation context
+- 🚀 **Automated Workflows**: Seamless integration between AI reasoning and prompt management
+
+### Using with MCP Client Tool
+
+1. **Setup MCP Connection**: Use n8n's "MCP Client Tool" node to connect to an MCP server
+2. **Enable Tool Usage**: The Langfuse Prompts node will appear as an available tool
+3. **AI Integration**: AI agents can now call Langfuse operations automatically
+
+**Example MCP Workflow:**
+```
+AI Agent → MCP Client Tool → Langfuse Prompts → Response
+```
+
+**Common Use Cases:**
+- **Dynamic RAG**: AI retrieves relevant prompts based on user queries
+- **Contextual Responses**: AI selects appropriate prompts for different scenarios
+- **Prompt Discovery**: AI searches for prompts containing specific terms or concepts
+- **Automated Prompt Creation**: AI creates new prompts based on conversation patterns
+
+### MCP Server Trigger
+
+You can also expose this node through n8n's "MCP Server Trigger" to make Langfuse operations available to external MCP clients:
+
+1. Add "MCP Server Trigger" to your workflow
+2. Connect the Langfuse Prompts node
+3. Configure authentication and transport settings
+4. External AI systems can now call your Langfuse operations
 
 ## 🔐 Credentials
 
