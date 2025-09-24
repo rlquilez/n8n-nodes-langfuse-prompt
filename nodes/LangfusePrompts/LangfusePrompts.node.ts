@@ -249,6 +249,64 @@ export class LangfusePrompts implements INodeType {
 				},
 			},
 			{
+				displayName: 'Search Query',
+				name: 'searchQuery',
+				type: 'string',
+				default: '',
+				description: 'Search text across prompt names, tags, and content (full text search)',
+				displayOptions: {
+					show: {
+						resource: ['prompt'],
+						operation: ['list'],
+					},
+				},
+				routing: {
+					request: {
+						qs: {
+							searchQuery: '={{$value}}',
+						},
+					},
+				},
+			},
+			{
+				displayName: 'Search Type',
+				name: 'searchType',
+				type: 'options',
+				options: [
+					{
+						name: 'Names & Tags',
+						value: 'id',
+						description: 'Search in prompt names and tags only (faster)',
+					},
+					{
+						name: 'Full Text',
+						value: 'content',
+						description: 'Search in all fields including prompt content (comprehensive)',
+					},
+					{
+						name: 'Both',
+						value: 'both',
+						description: 'Search in both metadata (names, tags) and content',
+					},
+				],
+				default: 'id',
+				description: 'Choose what fields to search in',
+				displayOptions: {
+					show: {
+						resource: ['prompt'],
+						operation: ['list'],
+						searchQuery: ['/^.+$/'], // Only show when searchQuery is not empty
+					},
+				},
+				routing: {
+					request: {
+						qs: {
+							searchType: '={{$value === "both" ? ["id", "content"] : [$value]}}',
+						},
+					},
+				},
+			},
+			{
 				displayName: 'Include Description',
 				name: 'includeDescription',
 				type: 'boolean',

@@ -127,14 +127,26 @@ Retrieve a specific prompt by name with optional version or label filtering.
 
 ### 📋 List Prompts
 
-Browse and search through all available prompts with pagination support.
+Browse and search through all available prompts with pagination and **full text search** support.
 
 **Parameters:**
 - `Page` *(optional)*: Page number for pagination (default: 1)
 - `Limit` *(optional)*: Results per page (max: 100, default: 50)
 - `Name Filter` *(optional)*: Filter prompts by name
 - `Tag Filter` *(optional)*: Filter prompts by tag
-- `Include Description` *(optional)*: Checkbox to include prompt descriptions in response
+- `Label Filter` *(optional)*: Filter prompts by label
+- `Search Query` *(optional)*: **Full text search** across prompt names, tags, and content
+- `Search Type` *(optional)*: Choose search scope:
+  - **Names & Tags**: Search in prompt names and tags only (faster)
+  - **Full Text**: Search in all fields including prompt content (comprehensive)
+  - **Both**: Search in both metadata and content
+- `Include Description` *(optional)*: Include prompt descriptions in response
+
+**🔍 Full Text Search Examples:**
+- Search for "customer support" across all prompt content
+- Find prompts containing "temperature" in their configuration
+- Look for prompts tagged with "chatbot" or containing "chat" in content
+- Search for specific prompt names like "welcome-*"
 
 **Example Response:**
 ```json
@@ -212,7 +224,28 @@ Create a workflow that selects prompts based on user context:
 }
 ```
 
-### Example 2: Create a New Prompt Version
+### Example 2: Full Text Search
+
+Search for prompts containing specific terms across all fields:
+
+```json
+{
+  "resource": "prompt",
+  "operation": "list",
+  "searchQuery": "customer support agent",
+  "searchType": "content",
+  "page": 1,
+  "limit": 10
+}
+```
+
+**Search Examples:**
+- `"temperature"` - Find all prompts mentioning temperature in content or config
+- `"chatbot"` - Find prompts tagged or containing chatbot references
+- `"welcome {{user}}"` - Search for specific prompt patterns
+- `"You are a helpful assistant"` - Find system messages in chat prompts
+
+### Example 3: Create a New Prompt Version
 
 Create new prompt versions for testing:
 
@@ -228,25 +261,6 @@ Create new prompt versions for testing:
 }
 ```
 
-### Example 3: Complete Prompt Update
-
-Update an existing prompt with new content and configuration:
-
-```json
-{
-  "resource": "prompt",
-  "operation": "update",
-  "updatePromptName": "customer-support-v2",
-  "promptVersion": 1,
-  "updatePromptType": "chat",
-  "updateChatMessages": "[{\"role\":\"system\",\"content\":\"You are an expert customer support agent\"},{\"role\":\"user\",\"content\":\"{{query}}\"}]",
-  "updateLabels": "production,improved",
-  "updateTags": "support,chat,v2",
-  "updateConfig": "{\"temperature\": 0.3, \"max_tokens\": 500}",
-  "updateCommitMessage": "Enhanced with better system prompt and configuration"
-}
-```
-
 ### Example 4: List with Optional Descriptions
 
 Get all prompts with their descriptions included:
@@ -257,18 +271,6 @@ Get all prompts with their descriptions included:
   "operation": "list",
   "includeDescription": true,
   "tagFilter": "production"
-}
-```
-
-### Example 5: Prompt Cleanup
-
-Delete outdated or unused prompts:
-
-```json
-{
-  "resource": "prompt",
-  "operation": "delete",
-  "deletePromptName": "deprecated-welcome-prompt"
 }
 ```
 
