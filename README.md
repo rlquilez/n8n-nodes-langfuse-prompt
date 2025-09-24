@@ -184,28 +184,18 @@ Create new text or chat prompts directly from your n8n workflow.
 ]
 ```
 
-### ✏️ Update Prompt
+### Note on Update/Delete Operations
 
-Update an existing prompt with new content, configuration, and metadata.
+**Important**: Update and Delete operations are **not supported** by the Langfuse public API v2. These operations are only available through the Langfuse web interface or internal TRPC endpoints.
 
-**Parameters:**
-- `Prompt Name` *(required)*: Name of the prompt to update
-- `Prompt Version` *(required)*: Version number to update
-- `Prompt Type` *(required)*: Either "text" or "chat"
-- `Prompt Content/Chat Messages` *(required)*: New content based on type
-- `Labels` *(optional)*: Comma-separated labels (default: "production")
-- `Tags` *(optional)*: Comma-separated tags
-- `Config` *(optional)*: JSON configuration object
-- `Commit Message` *(optional)*: Message describing the changes
+The Langfuse API v2 public endpoints support:
+- ✅ `GET /api/public/v2/prompts` - List prompts
+- ✅ `POST /api/public/v2/prompts` - Create prompt  
+- ✅ `GET /api/public/v2/prompts/[name]` - Get specific prompt
+- ❌ `PUT/PATCH /api/public/v2/prompts/[name]` - Update not available via public API
+- ❌ `DELETE /api/public/v2/prompts/[name]` - Delete not available via public API
 
-### 🗑️ Delete Prompt
-
-Delete a specific prompt permanently from Langfuse.
-
-**Parameters:**
-- `Prompt Name` *(required)*: Name of the prompt to delete
-
-**⚠️ Warning:** This operation is irreversible and will delete all versions of the prompt.
+For updates, you can create new versions of existing prompts using the Create operation. For deletions, use the Langfuse web interface.
 
 ## 📝 Usage Examples
 
@@ -222,19 +212,19 @@ Create a workflow that selects prompts based on user context:
 }
 ```
 
-### Example 2: A/B Testing Pipeline
+### Example 2: Create a New Prompt Version
 
-Create different prompt versions for testing:
+Create new prompt versions for testing:
 
 ```json
 {
   "resource": "prompt",
   "operation": "create",
-  "createPromptName": "welcome-v2",
+  "createPromptName": "welcome-prompt",
   "promptType": "text",
   "promptContent": "Hello {{userName}}! Welcome to our improved service!",
-  "labels": "testing,ab-test",
-  "tags": "welcome,v2"
+  "labels": "testing,latest",
+  "tags": "welcome,improved"
 }
 ```
 
@@ -430,12 +420,15 @@ This project is based on the original [n8n-nodes-langfuse](https://github.com/la
 
 ## 📈 Version History
 
-### v1.1.0 - Enhanced Operations
-- ✨ **New Delete Operation** - Remove prompts permanently from Langfuse
-- 🔧 **Enhanced Update Operation** - Now includes all fields from create operation (type, content, labels, tags, config, commit message)
-- 📋 **List with Descriptions** - Added optional checkbox to include prompt descriptions in list responses
-- 🎯 **Complete CRUD** - Full Create, Read, Update, Delete operations now available
-- 📝 **Better Documentation** - Updated with new operation examples and usage patterns
+### v1.1.1 - API Compatibility Fix
+- 🔧 **Removed Unsupported Operations** - Removed Update and Delete operations (not supported by Langfuse public API v2)
+- ✅ **API Compliance** - Now only includes operations officially supported by Langfuse public API
+- � **Clear Documentation** - Added explanation about API limitations and workarounds
+- 🎯 **Reliable Operations** - Focus on Create, Get, and List operations that work correctly
+
+### v1.1.0 - Enhanced Operations (Deprecated)
+- ❌ Included operations not supported by Langfuse public API
+- ✨ Attempted Delete and Update operations (resulted in 405 errors)
 
 ### v1.0.1 - Naming Fix
 - 🔧 Fixed naming conflicts by renaming nodes and credentials to more specific names
