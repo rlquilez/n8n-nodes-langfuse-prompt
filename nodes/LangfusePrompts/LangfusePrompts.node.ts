@@ -48,6 +48,30 @@ export class LangfusePrompts implements INodeType {
 				},
 				options: [
 					{
+						name: 'Create Prompt',
+						value: 'create',
+						action: 'Create a prompt',
+						description: 'Create a new prompt in Langfuse',
+						routing: {
+							request: {
+								method: 'POST',
+								url: '/api/public/v2/prompts',
+							},
+						},
+					},
+					{
+						name: 'Delete Prompt',
+						value: 'delete',
+						action: 'Delete a prompt',
+						description: 'Delete a specific prompt by name',
+						routing: {
+							request: {
+								method: 'DELETE',
+								url: '=/api/public/v2/prompts/{{$parameter["deletePromptName"]}}',
+							},
+						},
+					},
+					{
 						name: 'Get Prompt',
 						value: 'get',
 						action: 'Get a prompt',
@@ -72,18 +96,6 @@ export class LangfusePrompts implements INodeType {
 						},
 					},
 					{
-						name: 'Create Prompt',
-						value: 'create',
-						action: 'Create a prompt',
-						description: 'Create a new prompt in Langfuse',
-						routing: {
-							request: {
-								method: 'POST',
-								url: '/api/public/v2/prompts',
-							},
-						},
-					},
-					{
 						name: 'Update Prompt',
 						value: 'update',
 						action: 'Update a prompt',
@@ -92,18 +104,6 @@ export class LangfusePrompts implements INodeType {
 							request: {
 								method: 'PUT',
 								url: '=/api/public/v2/prompts/{{$parameter["updatePromptName"]}}',
-							},
-						},
-					},
-					{
-						name: 'Delete Prompt',
-						value: 'delete',
-						action: 'Delete a prompt',
-						description: 'Delete a specific prompt by name',
-						routing: {
-							request: {
-								method: 'DELETE',
-								url: '=/api/public/v2/prompts/{{$parameter["deletePromptName"]}}',
 							},
 						},
 					},
