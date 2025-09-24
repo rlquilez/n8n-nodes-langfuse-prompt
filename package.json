@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-langfuse-prompt",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Enhanced Langfuse nodes for n8n with advanced Prompt Management features",
 	"keywords": [
 		"n8n-community-node-package",
