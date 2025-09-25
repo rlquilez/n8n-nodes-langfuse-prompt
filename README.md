@@ -1,420 +1,774 @@
-# 🚀 n8n-nodes-langfuse-prompt
+# 🚀 n8n-nodes-langfuse-prompt# 🚀 n8n-nod## 📋 Table of Con- [📦 Installation](#-installation)entss-langfuse-prompt
 
-<div align="center">
 
-**Enhanced Langfuse integration for n8n with advanced Prompt Management features**
 
-[![npm version](https://badge.fury.io/js/n8n-nodes-langfuse-prompt.svg)](https://www.npmjs.com/package/n8n-nodes-langfuse-prompt)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![n8n Community Node](https://img.shields.io/badge/n8n-Community%20## 📈 Version History
+<div align="center"><div align="center">
 
-### v1.3.2 - Documentation Consistency & Structure Fix
-- 🗂️ **Cleaned Documentation** - Removed duplicated version history from top section
-- 🔧 **Fixed References** - Removed obsolete "Include Description" parameter references
-- 📝 **Complete History** - Updated version history with all missing releases (v1.3.1, v1.3.0, v1.2.0)
-- 🎯 **Consistency** - Ensured documentation matches actual node functionality
-- 📋 **Table of Contents** - Added MCP Server Integration section to navigation
 
-### v1.3.1 - Documentation & Description Corrections
-- 🔧 **Accurate Descriptions** - Corrected misleading references to "CRUD operations" and "Update/Delete" functionality
-- 📝 **Honest Documentation** - Updated all descriptions to accurately reflect only supported operations (Get, List, Create)
-- ✅ **Transparency** - Clear explanation of API limitations and supported operations
-- 🎯 **Focused Messaging** - Emphasize what the node does well rather than unsupported features
 
-### v1.3.0 - MCP Integration & UI Improvements
-- 🤖 **MCP Server Integration** - Added `usableAsTool: true` for compatibility with n8n's Model Context Protocol (MCP) workflows
-- 🔍 **Full Text Search** - Enhanced List Prompts with comprehensive search capabilities (Names & Tags, Full Text, Both)
-- 🎯 **Streamlined UI** - Removed optional "Include Description" checkbox from List Prompts operation for cleaner interface
-- 🚀 **AI Agent Compatible** - Can now be used as a tool by AI agents in MCP server environments
-- 📚 **Comprehensive Documentation** - Added detailed MCP integration guide and usage examples
+**Enhanced Langfuse integration for n8n with advanced Prompt Management features****Enhanced Langfuse integration for n8n with advanced Prompt Management features**
 
-### v1.2.0 - Full Text Search Enhancement
-- 🔍 **Advanced Search** - Added full text search functionality with searchQuery and searchType parameters
-- 🎯 **Search Modes** - Support for "Names & Tags", "Full Text", and "Both" search types
-- 📊 **Enhanced Filtering** - Improved prompt discovery and content-based searching
-- ✅ **API Compliant** - Uses official Langfuse API v2 search parameters
 
-### v1.1.1 - API Compatibility Fix
-- 🔧 **Removed Unsupported Operations** - Removed Update and Delete operations (not supported by Langfuse public API v2)
-- ✅ **API Compliance** - Now only includes operations officially supported by Langfuse public API
-- 📝 **Clear Documentation** - Added explanation about API limitations and workarounds
-- 🎯 **Reliable Operations** - Focus on Create, Get, and List operations that work correctly6B6B.svg)](https://docs.n8n.io/integrations/community-nodes/)
+
+[![npm version](https://badge.fury.io/js/n8n-nodes-langfuse-prompt.svg)](https://www.npmjs.com/package/n8n-nodes-langfuse-prompt)[![npm version](https://badge.fury.io/js/n8n-nodes-langfuse-prompt.svg)](https://www.npmjs.com/package/n8n-nodes-langfuse-prompt)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[![n8n Community Node](https://img.shields.io/badge/n8n-Community%20Node-FF6B6B.svg)](https://docs.n8n.io/integrations/community-nodes/)
+
+
 
 </div>
 
-## � Table of Contents
-
 - [✨ Features](#-features)
-- [� Installation](#-installation)
+
+## 📋 Table of Contents- [� Installation](#-installation)
+
 - [🤖 MCP Server Integration](#-mcp-server-integration)
-- [🔐 Credentials](#-credentials)
-- [🎯 Operations](#-operations)
-- [📝 Usage Examples](#-usage-examples)
-- [🐳 Docker Setup](#-docker-setup)
-- [🛠️ Development](#-development)
+
+- [✨ Features](#-features)- [🔐 Credentials](#-credentials)
+
+- [📦 Installation](#-installation)- [🎯 Operations](#-operations)
+
+- [🤖 MCP Server Integration](#-mcp-server-integration)- [📝 Usage Examples](#-usage-examples)
+
+- [🔐 Credentials](#-credentials)- [🐳 Docker Setup](#-docker-setup)
+
+- [🎯 Operations](#-operations)- [🛠️ Development](#-development)
+
+- [📝 Usage Examples](#-usage-examples)- [🤝 Contributing](#-contributing)
+
+- [🐳 Docker Setup](#-docker-setup)- [🐛 Troubleshooting](#-troubleshooting)
+
+- [🛠️ Development](#-development)- [📚 Resources](#-resources)
+
 - [🤝 Contributing](#-contributing)
-- [🐛 Troubleshooting](#-troubleshooting)
+
+- [🐛 Troubleshooting](#-troubleshooting)## ✨ Features
+
 - [📚 Resources](#-resources)
 
-## ✨ Features
-
 ### 🎯 Comprehensive Prompt Management
-- **🔍 Get Prompt**: Retrieve specific prompts by name, version, or label
-- **📋 List Prompts**: Browse all prompts with advanced filtering and pagination
-- **➕ Create Prompt**: Create new text or chat prompts directly from n8n workflows
 
-### 🚀 Advanced Capabilities
-- ✅ **Smart Filtering** - Filter by name, tags, and labels
+## ✨ Features- **🔍 Get Prompt**: Retrieve specific prompts by name, version, or label
+
+- **📋 List Prompts**: Browse all prompts with advanced filtering and pagination
+
+### 🎯 Comprehensive Prompt Management- **➕ Create Prompt**: Create new text or chat prompts directly from n8n workflows
+
+- **🔍 Get Prompt**: Retrieve specific prompts by name, version, or label
+
+- **📋 List Prompts**: Browse all prompts with advanced filtering and pagination### 🚀 Advanced Capabilities
+
+- **➕ Create Prompt**: Create new text or chat prompts directly from n8n workflows- ✅ **Smart Filtering** - Filter by name, tags, and labels
+
 - ✅ **Pagination Support** - Handle large prompt collections efficiently
-- ✅ **Multiple Types** - Support for both text and chat prompts
-- ✅ **Create & Read Operations** - Get, List, and Create prompts with full API support
-- ✅ **Version Control** - Retrieve specific prompt versions and create new versions
+
+### 🚀 Advanced Capabilities- ✅ **Multiple Types** - Support for both text and chat prompts
+
+- ✅ **Smart Filtering** - Filter by name, tags, and labels- ✅ **Create & Read Operations** - Get, List, and Create prompts with full API support
+
+- ✅ **Pagination Support** - Handle large prompt collections efficiently- ✅ **Version Control** - Retrieve specific prompt versions and create new versions
+
+- ✅ **Multiple Types** - Support for both text and chat prompts- ✅ **Bulk Operations** - Process multiple prompts efficiently
+
+- ✅ **Create & Read Operations** - Get, List, and Create prompts with full API support- ✅ **Full Text Search** - Search prompts by content using "Names & Tags", "Full Text", or "Both" modes
+
+- ✅ **Version Control** - Retrieve specific prompt versions and create new versions- ✅ **MCP Server Integration** - Compatible as a tool in n8n's MCP (Model Context Protocol) server workflows
+
 - ✅ **Bulk Operations** - Process multiple prompts efficiently
-- ✅ **Full Text Search** - Search prompts by content using "Names & Tags", "Full Text", or "Both" modes
+
+- ✅ **Full Text Search** - Search prompts by content using "Names & Tags", "Full Text", or "Both" modes![n8n Langfuse Prompt Node](assets/new_n8n_langfuse_node.png)
+
 - ✅ **MCP Server Integration** - Compatible as a tool in n8n's MCP (Model Context Protocol) server workflows
 
 ## 📦 Installation
 
+![n8n Langfuse Prompt Node](assets/new_n8n_langfuse_node.png)
+
 ### Community Nodes (Recommended)
+
+## 📦 Installation
 
 For **n8n v0.187+**, install directly from the UI:
 
+### Community Nodes (Recommended)
+
 1. Go to **Settings → Community Nodes**
-2. Click **Install**
+
+For **n8n v0.187+**, install directly from the UI:2. Click **Install**
+
 3. Enter `n8n-nodes-langfuse-prompt` in the package name field
+
+1. Go to **Settings → Community Nodes**4. Agree to the risks and click **Install**
+
+2. Click **Install**
+
+3. Enter `n8n-nodes-langfuse-prompt` in the package name field### Manual Installation
+
 4. Agree to the risks and click **Install**
 
-### Manual Installation
-
 ```bash
-# Navigate to your n8n installation directory
+
+### Manual Installation# Navigate to your n8n installation directory
+
 cd ~/.n8n
 
-# Install the package
-npm install n8n-nodes-langfuse-prompt
+```bash
+
+# Navigate to your n8n installation directory# Install the package
+
+cd ~/.n8nnpm install n8n-nodes-langfuse-prompt
+
+
+
+# Install the package# Restart n8n
+
+npm install n8n-nodes-langfuse-promptn8n start
+
+```
 
 # Restart n8n
-n8n start
-```
 
-### Docker Installation
+```### Docker Installation
 
-Use the provided Docker configuration for production deployments:
 
-```bash
+
+### Docker InstallationUse the provided Docker configuration for production deployments:
+
+
+
+Add to your `docker-compose.yml`:```bash
+
 # Clone the repository
-git clone https://github.com/rlquilez/n8n-nodes-langfuse-prompt.git
-cd n8n-nodes-langfuse-prompt
 
-# Build and run with Docker
+```yamlgit clone https://github.com/rlquilez/n8n-nodes-langfuse-prompt.git
+
+environment:cd n8n-nodes-langfuse-prompt
+
+  N8N_NODES_INCLUDE: "n8n-nodes-langfuse-prompt"
+
+```# Build and run with Docker
+
 docker build -t n8n-langfuse-prompt .
-docker run -it -p 5678:5678 n8n-langfuse-prompt
+
+## 🤖 MCP Server Integrationdocker run -it -p 5678:5678 n8n-langfuse-prompt
+
 ```
+
+This node is **MCP (Model Context Protocol) compatible**, meaning it can be used as a tool by AI agents in n8n's MCP server workflows.
 
 ## 🤖 MCP Server Integration
 
-This node is compatible with n8n's **Model Context Protocol (MCP) server** integration, making it usable as a tool in AI workflows.
+### Key MCP Features
 
-### What is MCP Integration?
+- **Tool Integration**: Set `usableAsTool: true` in node propertiesThis node is compatible with n8n's **Model Context Protocol (MCP) server** integration, making it usable as a tool in AI workflows.
 
-The MCP integration allows AI agents to use this Langfuse Prompts node as a tool during their reasoning process. When connected through MCP:
+- **AI Agent Access**: Compatible with n8n's MCP Client Tool and MCP Server Trigger
 
-- 🤖 **AI Agent Tool**: AI agents can automatically call Langfuse operations based on context
+- **Seamless Workflows**: AI agents can directly interact with Langfuse prompts### What is MCP Integration?
+
+
+
+![MCP Server Integration](assets/langfuse_mcp_server.png)The MCP integration allows AI agents to use this Langfuse Prompts node as a tool during their reasoning process. When connected through MCP:
+
+
+
+### MCP Usage Example- 🤖 **AI Agent Tool**: AI agents can automatically call Langfuse operations based on context
+
 - 🔄 **Dynamic Prompt Management**: AI can retrieve, search, and create prompts on-demand
-- 🎯 **Context-Aware Selection**: Intelligent prompt selection based on conversation context
-- 🚀 **Automated Workflows**: Seamless integration between AI reasoning and prompt management
 
-### Using with MCP Client Tool
+1. **Setup MCP Server Trigger**: Configure your n8n workflow with MCP Server Trigger- 🎯 **Context-Aware Selection**: Intelligent prompt selection based on conversation context
 
-1. **Setup MCP Connection**: Use n8n's "MCP Client Tool" node to connect to an MCP server
-2. **Enable Tool Usage**: The Langfuse Prompts node will appear as an available tool
-3. **AI Integration**: AI agents can now call Langfuse operations automatically
+2. **Add Langfuse Node**: Include the Langfuse Prompt node with `usableAsTool: true`- 🚀 **Automated Workflows**: Seamless integration between AI reasoning and prompt management
 
-**Example MCP Workflow:**
-```
-AI Agent → MCP Client Tool → Langfuse Prompts → Response
+3. **AI Agent Interaction**: AI agents can now:
+
+   - Retrieve specific prompts for dynamic use![Langfuse MCP Server Integration](assets/langfuse_mcp_server.png)
+
+   - List available prompts for selection
+
+   - Create new prompts based on conversation context### Using with MCP Client Tool
+
+
+
+```javascript1. **Setup MCP Connection**: Use n8n's "MCP Client Tool" node to connect to an MCP server
+
+// Example MCP tool call from AI agent2. **Enable Tool Usage**: The Langfuse Prompts node will appear as an available tool
+
+{3. **AI Integration**: AI agents can now call Langfuse operations automatically
+
+  "operation": "get",
+
+  "name": "system-prompt-v2",**Example MCP Workflow:**
+
+  "version": 1,```
+
+  "label": "production"AI Agent → MCP Client Tool → Langfuse Prompts → Response
+
+}```
+
 ```
 
 **Common Use Cases:**
-- **Dynamic RAG**: AI retrieves relevant prompts based on user queries
+
+This enables powerful workflows where AI agents can dynamically manage and utilize Langfuse prompts within your n8n automations.- **Dynamic RAG**: AI retrieves relevant prompts based on user queries
+
 - **Contextual Responses**: AI selects appropriate prompts for different scenarios
-- **Prompt Discovery**: AI searches for prompts containing specific terms or concepts
+
+## 🔐 Credentials- **Prompt Discovery**: AI searches for prompts containing specific terms or concepts
+
 - **Automated Prompt Creation**: AI creates new prompts based on conversation patterns
+
+Create a new **Langfuse API** credential with:
 
 ### MCP Server Trigger
 
-You can also expose this node through n8n's "MCP Server Trigger" to make Langfuse operations available to external MCP clients:
+- **Base URL**: Your Langfuse instance URL (e.g., `https://cloud.langfuse.com`)
+
+- **Public Key**: Your Langfuse public keyYou can also expose this node through n8n's "MCP Server Trigger" to make Langfuse operations available to external MCP clients:
+
+- **Secret Key**: Your Langfuse secret key
 
 1. Add "MCP Server Trigger" to your workflow
-2. Connect the Langfuse Prompts node
-3. Configure authentication and transport settings
-4. External AI systems can now call your Langfuse operations
 
-## 🔐 Credentials
+You can find your API keys in your Langfuse project settings.2. Connect the Langfuse Prompts node
+
+3. Configure authentication and transport settings
+
+## 🎯 Operations4. External AI systems can now call your Langfuse operations
+
+
+
+### 🔍 Get Prompt## 🔐 Credentials
+
+Retrieve a specific prompt by name with optional version and label filtering.
 
 ### Setting up Langfuse API Credentials
 
-1. **Get your API keys from Langfuse:**
-   - Sign up at [Langfuse Cloud](https://cloud.langfuse.com) or use your self-hosted instance
-   - Create a project in your dashboard
+**Parameters:**
+
+- `name` (required): The prompt name1. **Get your API keys from Langfuse:**
+
+- `version` (optional): Specific version number   - Sign up at [Langfuse Cloud](https://cloud.langfuse.com) or use your self-hosted instance
+
+- `label` (optional): Version label (e.g., "production", "latest")   - Create a project in your dashboard
+
    - Go to **Settings → API Keys**
-   - Create a new API key pair (Public + Secret)
+
+### 📋 List Prompts   - Create a new API key pair (Public + Secret)
+
+Browse and search through your prompts with advanced filtering options.
 
 2. **Configure in n8n:**
-   - Go to **Credentials → Add Credential**
-   - Search for **"Langfuse API"**
-   - Fill in the required fields:
 
-| Field | Description | Example |
-|-------|-------------|---------|
-| **Langfuse Host URL** | Your Langfuse instance URL | `https://cloud.langfuse.com` |
-| **Public Key** | Your Langfuse public key | `pk-xxx...` |
-| **Secret Key** | Your Langfuse secret key | `sk-xxx...` |
+**Parameters:**   - Go to **Credentials → Add Credential**
 
-## 🎯 Operations
+- `name` (optional): Filter by prompt name   - Search for **"Langfuse API"**
 
-### 🔍 Get Prompt
+- `labels` (optional): Filter by labels   - Fill in the required fields:
 
-Retrieve a specific prompt by name with optional version or label filtering.
+- `tags` (optional): Filter by tags
+
+- `fromCreatedAt` (optional): Filter by creation date (from)| Field | Description | Example |
+
+- `toCreatedAt` (optional): Filter by creation date (to)|-------|-------------|---------|
+
+- `version` (optional): Filter by version| **Langfuse Host URL** | Your Langfuse instance URL | `https://cloud.langfuse.com` |
+
+- `page` (optional): Page number for pagination| **Public Key** | Your Langfuse public key | `pk-xxx...` |
+
+- `limit` (optional): Items per page (max 50)| **Secret Key** | Your Langfuse secret key | `sk-xxx...` |
+
+
+
+**🔍 Full Text Search Options:**## 🎯 Operations
+
+- `searchQuery` (optional): Search term for content-based filtering
+
+- `searchType` (optional): Choose search mode:### 🔍 Get Prompt
+
+  - **"Names & Tags"** (default): Search in prompt names and tags only
+
+  - **"Full Text"**: Search in prompt content/templates  Retrieve a specific prompt by name with optional version or label filtering.
+
+  - **"Both"**: Search in names, tags, AND content
 
 **Parameters:**
-- `Prompt Name` *(required)*: Name of the prompt to retrieve
-- `Version` *(optional)*: Specific version number
+
+### ➕ Create Prompt- `Prompt Name` *(required)*: Name of the prompt to retrieve
+
+Create new text or chat prompts with full configuration options.- `Version` *(optional)*: Specific version number
+
 - `Label` *(optional)*: Label filter (defaults to "production")
 
-**Example Response:**
-```json
-{
-  "id": "prompt-123",
-  "name": "welcome-prompt",
-  "version": 2,
+**Parameters:**
+
+- `name` (required): Unique prompt name**Example Response:**
+
+- `prompt` (required): The prompt content/template```json
+
+- `isActive` (optional): Mark prompt as active{
+
+- `config` (optional): Additional prompt configuration  "id": "prompt-123",
+
+- `labels` (optional): Assign labels for organization  "name": "welcome-prompt",
+
+- `tags` (optional): Add tags for categorization  "version": 2,
+
   "type": "text",
-  "prompt": "Welcome {{userName}}! How can I help you today?",
-  "config": {"temperature": 0.7},
-  "labels": ["production", "latest"],
+
+**Prompt Types:**  "prompt": "Welcome {{userName}}! How can I help you today?",
+
+- **Text Prompt**: Simple string template  "config": {"temperature": 0.7},
+
+- **Chat Prompt**: Structured conversation format with roles  "labels": ["production", "latest"],
+
   "tags": ["onboarding", "welcome"]
-}
+
+## 📝 Usage Examples}
+
 ```
 
-### 📋 List Prompts
+### Example 1: Get Production Prompt
 
-Browse and search through all available prompts with pagination and **full text search** support.
+```json### 📋 List Prompts
 
-**Parameters:**
-- `Page` *(optional)*: Page number for pagination (default: 1)
-- `Limit` *(optional)*: Results per page (max: 100, default: 50)
-- `Name Filter` *(optional)*: Filter prompts by name
-- `Tag Filter` *(optional)*: Filter prompts by tag
-- `Label Filter` *(optional)*: Filter prompts by label
-- `Search Query` *(optional)*: **Full text search** across prompt names, tags, and content
-- `Search Type` *(optional)*: Choose search scope:
-  - **Names & Tags**: Search in prompt names and tags only (faster)
-  - **Full Text**: Search in all fields including prompt content (comprehensive)
-  - **Both**: Search in both metadata and content
-
-**🔍 Full Text Search Examples:**
-- Search for "customer support" across all prompt content
-- Find prompts containing "temperature" in their configuration
-- Look for prompts tagged with "chatbot" or containing "chat" in content
-- Search for specific prompt names like "welcome-*"
-
-**Example Response:**
-```json
 {
-  "data": [
-    {
-      "name": "chatbot-prompt",
-      "versions": [1, 2, 3],
-      "lastUpdatedAt": "2024-01-15T10:30:00.000Z",
-      "tags": ["chatbot", "support"],
-      "description": "Customer support chatbot prompt"
-    }
-  ],
-  "meta": {
-    "page": 1,
-    "limit": 50,
-    "totalPages": 3,
-    "totalItems": 125
-  }
+
+  "operation": "get",Browse and search through all available prompts with pagination and **full text search** support.
+
+  "name": "customer-service-prompt",
+
+  "label": "production"**Parameters:**
+
+}- `Page` *(optional)*: Page number for pagination (default: 1)
+
+```- `Limit` *(optional)*: Results per page (max: 100, default: 50)
+
+- `Name Filter` *(optional)*: Filter prompts by name
+
+### Example 2: Search Prompts by Content- `Tag Filter` *(optional)*: Filter prompts by tag
+
+```json- `Label Filter` *(optional)*: Filter prompts by label
+
+{- `Search Query` *(optional)*: **Full text search** across prompt names, tags, and content
+
+  "operation": "list",- `Search Type` *(optional)*: Choose search scope:
+
+  "searchQuery": "customer satisfaction",  - **Names & Tags**: Search in prompt names and tags only (faster)
+
+  "searchType": "Full Text",  - **Full Text**: Search in all fields including prompt content (comprehensive)
+
+  "limit": 10  - **Both**: Search in both metadata and content
+
 }
-```
 
-### ➕ Create Prompt
+```**🔍 Full Text Search Examples:**
 
-Create new text or chat prompts directly from your n8n workflow.
+- Search for "customer support" across all prompt content
 
-**Parameters:**
-- `Prompt Name` *(required)*: Name for the new prompt
+### Example 3: Create New Chat Prompt- Find prompts containing "temperature" in their configuration
+
+```json- Look for prompts tagged with "chatbot" or containing "chat" in content
+
+{- Search for specific prompt names like "welcome-*"
+
+  "operation": "create",
+
+  "name": "support-agent-v3",**Example Response:**
+
+  "prompt": [```json
+
+    {{
+
+      "role": "system",  "data": [
+
+      "content": "You are a helpful customer support agent..."    {
+
+    },      "name": "chatbot-prompt",
+
+    {      "versions": [1, 2, 3],
+
+      "role": "user",       "lastUpdatedAt": "2024-01-15T10:30:00.000Z",
+
+      "content": "{{user_question}}"      "tags": ["chatbot", "support"],
+
+    }      "description": "Customer support chatbot prompt"
+
+  ],    }
+
+  "labels": ["support", "v3"],  ],
+
+  "tags": ["customer-service", "chat"],  "meta": {
+
+  "isActive": true    "page": 1,
+
+}    "limit": 50,
+
+```    "totalPages": 3,
+
+    "totalItems": 125
+
+### Example 4: List Recent Prompts with Pagination  }
+
+```json}
+
+{```
+
+  "operation": "list",
+
+  "tags": ["production"],### ➕ Create Prompt
+
+  "limit": 20,
+
+  "page": 1,Create new text or chat prompts directly from your n8n workflow.
+
+  "fromCreatedAt": "2024-01-01T00:00:00Z"
+
+}**Parameters:**
+
+```- `Prompt Name` *(required)*: Name for the new prompt
+
 - `Prompt Type` *(required)*: Either "text" or "chat"
-- `Prompt Content` *(for text)*: The text content
+
+## 🐳 Docker Setup- `Prompt Content` *(for text)*: The text content
+
 - `Chat Messages` *(for chat)*: JSON array of message objects
-- `Labels` *(optional)*: Comma-separated labels (default: "production")
+
+### Method 1: Environment Variable- `Labels` *(optional)*: Comma-separated labels (default: "production")
+
 - `Tags` *(optional)*: Comma-separated tags
-- `Config` *(optional)*: JSON configuration object
 
-**Chat Messages Format:**
-```json
+```dockerfile- `Config` *(optional)*: JSON configuration object
+
+FROM n8nio/n8n:latest
+
+ENV N8N_NODES_INCLUDE=n8n-nodes-langfuse-prompt**Chat Messages Format:**
+
+``````json
+
 [
-  {
+
+### Method 2: Docker Compose  {
+
     "role": "system",
-    "content": "You are a helpful assistant"
-  },
-  {
-    "role": "user",
-    "content": "{{question}}"
-  }
-]
-```
 
-### API Operations Supported
+```yaml    "content": "You are a helpful assistant"
 
-This node implements all operations officially supported by the Langfuse public API v2:
+version: '3.8'  },
 
-- ✅ `GET /api/public/v2/prompts` - List prompts with filtering and search
+services:  {
+
+  n8n:    "role": "user",
+
+    image: n8nio/n8n:latest    "content": "{{question}}"
+
+    environment:  }
+
+      - N8N_NODES_INCLUDE=n8n-nodes-langfuse-prompt]
+
+    volumes:```
+
+      - n8n_data:/home/node/.n8n
+
+    ports:### API Operations Supported
+
+      - "5678:5678"
+
+```This node implements all operations officially supported by the Langfuse public API v2:
+
+
+
+### Method 3: Custom Dockerfile- ✅ `GET /api/public/v2/prompts` - List prompts with filtering and search
+
 - ✅ `POST /api/public/v2/prompts` - Create new prompts  
-- ✅ `GET /api/public/v2/prompts/[name]` - Get specific prompt by name
+
+```dockerfile- ✅ `GET /api/public/v2/prompts/[name]` - Get specific prompt by name
+
+FROM n8nio/n8n:latest
 
 **Note**: Update and Delete operations are not available via the Langfuse public API. For prompt modifications, create new versions using the Create operation. For deletions, use the Langfuse web interface.
 
-## 📝 Usage Examples
+USER root
+
+RUN npm install -g n8n-nodes-langfuse-prompt## 📝 Usage Examples
+
+USER node
 
 ### Example 1: Dynamic Prompt Selection
 
-Create a workflow that selects prompts based on user context:
+ENV N8N_NODES_INCLUDE=n8n-nodes-langfuse-prompt
 
-```json
+```Create a workflow that selects prompts based on user context:
+
+
+
+## 🛠️ Development```json
+
 {
-  "resource": "prompt",
-  "operation": "list",
-  "nameFilter": "customer-support",
-  "tagFilter": "{{$json.category}}"
-}
-```
 
-### Example 2: Full Text Search
+### Prerequisites  "resource": "prompt",
+
+- Node.js 16+  "operation": "list",
+
+- n8n CLI installed globally: `npm install -g n8n`  "nameFilter": "customer-support",
+
+  "tagFilter": "{{$json.category}}"
+
+### Setup}
+
+```bash```
+
+# Clone the repository
+
+git clone https://github.com/rlquilez/n8n-nodes-langfuse-prompt.git### Example 2: Full Text Search
+
+cd n8n-nodes-langfuse-prompt
 
 Search for prompts containing specific terms across all fields:
 
-```json
+# Install dependencies
+
+npm install```json
+
 {
-  "resource": "prompt",
-  "operation": "list",
+
+# Build the project  "resource": "prompt",
+
+npm run build  "operation": "list",
+
   "searchQuery": "customer support agent",
-  "searchType": "content",
-  "page": 1,
-  "limit": 10
+
+# Link for local development  "searchType": "content",
+
+npm link  "page": 1,
+
+```  "limit": 10
+
 }
-```
 
-**Search Examples:**
-- `"temperature"` - Find all prompts mentioning temperature in content or config
+### Building```
+
+```bash
+
+npm run build**Search Examples:**
+
+```- `"temperature"` - Find all prompts mentioning temperature in content or config
+
 - `"chatbot"` - Find prompts tagged or containing chatbot references
-- `"welcome {{user}}"` - Search for specific prompt patterns
-- `"You are a helpful assistant"` - Find system messages in chat prompts
 
-### Example 3: Create a New Prompt Version
+### Testing Locally- `"welcome {{user}}"` - Search for specific prompt patterns
 
-Create new prompt versions for testing:
+```bash- `"You are a helpful assistant"` - Find system messages in chat prompts
+
+# Link the package
+
+npm link### Example 3: Create a New Prompt Version
+
+
+
+# In your n8n directory, link the nodeCreate new prompt versions for testing:
+
+npm link n8n-nodes-langfuse-prompt
 
 ```json
-{
-  "resource": "prompt",
-  "operation": "create",
+
+# Start n8n{
+
+n8n start  "resource": "prompt",
+
+```  "operation": "create",
+
   "createPromptName": "welcome-prompt",
-  "promptType": "text",
+
+## 🤝 Contributing  "promptType": "text",
+
   "promptContent": "Hello {{userName}}! Welcome to our improved service!",
-  "labels": "testing,latest",
+
+We welcome contributions! Here's how you can help:  "labels": "testing,latest",
+
   "tags": "welcome,improved"
-}
-```
 
-## 🐳 Docker Setup
+### 🐛 Bug Reports}
 
-### Quick Start with Docker Compose
+- Use the issue tracker to report bugs```
 
-Create a `docker-compose.yml` file:
+- Include detailed steps to reproduce
+
+- Provide error messages and logs## 🐳 Docker Setup
+
+
+
+### ✨ Feature Requests### Quick Start with Docker Compose
+
+- Suggest new features via issues
+
+- Explain the use case and benefitsCreate a `docker-compose.yml` file:
+
+- Consider if it fits the project scope
 
 ```yaml
-version: '3.8'
-services:
-  n8n:
-    image: docker.n8n.io/n8nio/n8n
-    ports:
-      - "5678:5678"
+
+### 🔧 Pull Requestsversion: '3.8'
+
+1. Fork the repositoryservices:
+
+2. Create a feature branch: `git checkout -b feature/my-feature`  n8n:
+
+3. Make your changes and test thoroughly    image: docker.n8n.io/n8nio/n8n
+
+4. Update documentation if needed    ports:
+
+5. Submit a pull request with clear description      - "5678:5678"
+
     environment:
-      - N8N_CUSTOM_EXTENSIONS=/opt/n8n-custom-nodes
-    volumes:
-      - n8n_data:/home/node/.n8n
-    command: >
-      bash -c "
-        npm install n8n-nodes-langfuse-prompt &&
+
+### 📋 Development Guidelines      - N8N_CUSTOM_EXTENSIONS=/opt/n8n-custom-nodes
+
+- Follow existing code style and patterns    volumes:
+
+- Add appropriate error handling      - n8n_data:/home/node/.n8n
+
+- Update TypeScript definitions    command: >
+
+- Test with different n8n versions      bash -c "
+
+- Document any breaking changes        npm install n8n-nodes-langfuse-prompt &&
+
         n8n start
-      "
+
+## 🐛 Troubleshooting      "
+
 volumes:
-  n8n_data:
+
+### Common Issues  n8n_data:
+
 ```
 
-Run with:
-```bash
-docker-compose up -d
+#### Installation Problems
+
+```bashRun with:
+
+# Clear npm cache```bash
+
+npm cache clean --forcedocker-compose up -d
+
 ```
 
-## 🛠️ Development
+# Reinstall
 
-### Setting up the Development Environment
+npm uninstall n8n-nodes-langfuse-prompt## 🛠️ Development
 
-```bash
-# Clone the repository
-git clone https://github.com/rlquilez/n8n-nodes-langfuse-prompt.git
-cd n8n-nodes-langfuse-prompt
+npm install n8n-nodes-langfuse-prompt
 
-# Install dependencies
-npm install
+```### Setting up the Development Environment
 
-# Build the project
+
+
+#### Node Not Appearing```bash
+
+- Restart n8n completely# Clone the repository
+
+- Check if the package is in `node_modules`git clone https://github.com/rlquilez/n8n-nodes-langfuse-prompt.git
+
+- Verify n8n version compatibilitycd n8n-nodes-langfuse-prompt
+
+
+
+#### API Connection Issues# Install dependencies
+
+- Verify your Langfuse credentialsnpm install
+
+- Check if your Langfuse instance is accessible
+
+- Ensure API keys have proper permissions# Build the project
+
 npm run build
 
-# Run linting
-npm run lint
+#### Search Not Working
+
+- Verify `searchQuery` parameter is provided# Run linting
+
+- Check that `searchType` is one of: "Names & Tags", "Full Text", or "Both"npm run lint
+
+- Some search functionality requires newer Langfuse versions
 
 # Format code
-npm run format
-```
 
-### Project Structure
+### Getting Helpnpm run format
 
-```
+- Check the [Issues](https://github.com/rlquilez/n8n-nodes-langfuse-prompt/issues) page```
+
+- Review the [Langfuse API documentation](https://langfuse.com/docs/api)
+
+- Join the [n8n Community](https://community.n8n.io/)### Project Structure
+
+
+
+## 📚 Resources```
+
 n8n-nodes-langfuse-prompt/
-├── credentials/
-│   └── LangfuseApi.credentials.ts
-├── nodes/
-│   └── Langfuse/
+
+### Official Documentation├── credentials/
+
+- [n8n Community Nodes Guide](https://docs.n8n.io/integrations/community-nodes/)│   └── LangfuseApi.credentials.ts
+
+- [Langfuse API Documentation](https://langfuse.com/docs/api)├── nodes/
+
+- [Langfuse Prompt Management](https://langfuse.com/docs/prompts)│   └── Langfuse/
+
 │       ├── Langfuse.node.ts
-│       ├── Langfuse.json
-│       └── langfuse.svg
-├── assets/
+
+### API References  │       ├── Langfuse.json
+
+- [Langfuse Prompts API v2](https://langfuse.com/docs/api/prompts)│       └── langfuse.svg
+
+- [n8n Node Development](https://docs.n8n.io/integrations/creating-nodes/)├── assets/
+
 │   └── *.png
-├── docker/
-│   └── Dockerfile
-├── package.json
+
+### Community├── docker/
+
+- [n8n Community Forum](https://community.n8n.io/)│   └── Dockerfile
+
+- [Langfuse Discord](https://discord.gg/langfuse)├── package.json
+
 ├── tsconfig.json
-└── README.md
+
+## 📄 License└── README.md
+
 ```
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ### Building and Testing
 
+## 🙏 Acknowledgments
+
 ```bash
-# Development mode with watch
+
+This project is based on the original [n8n-nodes-langfuse](https://github.com/langfuse/n8n-nodes-langfuse) by the Langfuse team. We extend our sincere gratitude to the original authors for creating the foundation that made this enhanced version possible.# Development mode with watch
+
 npm run dev
 
+---
+
 # Production build
-npm run build
 
-# Run tests (if available)
+<div align="center">npm run build
+
+
+
+**Built with ❤️ for the n8n and Langfuse communities**# Run tests (if available)
+
 npm test
-```
 
-## 🤝 Contributing
+[⭐ Star this repo](https://github.com/rlquilez/n8n-nodes-langfuse-prompt) | [🐛 Report Bug](https://github.com/rlquilez/n8n-nodes-langfuse-prompt/issues) | [✨ Request Feature](https://github.com/rlquilez/n8n-nodes-langfuse-prompt/issues)```
+
+
+
+</div>## 🤝 Contributing
 
 We welcome contributions! Please follow these steps:
 
@@ -474,29 +828,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 This project is based on the original [n8n-nodes-langfuse](https://github.com/langfuse/n8n-nodes-langfuse) by the Langfuse team. We extend our sincere gratitude to the original authors for creating the foundation that made this enhanced version possible.
 
-## 📈 Version History
-
-### v1.1.1 - API Compatibility Fix
-- 🔧 **Removed Unsupported Operations** - Removed Update and Delete operations (not supported by Langfuse public API v2)
-- ✅ **API Compliance** - Now only includes operations officially supported by Langfuse public API
-- � **Clear Documentation** - Added explanation about API limitations and workarounds
-- 🎯 **Reliable Operations** - Focus on Create, Get, and List operations that work correctly
-
-### v1.1.0 - Enhanced Operations (Deprecated)
-- ❌ Included operations not supported by Langfuse public API
-- ✨ Attempted Delete and Update operations (resulted in 405 errors)
-
-### v1.0.1 - Naming Fix
-- 🔧 Fixed naming conflicts by renaming nodes and credentials to more specific names
-- 🚀 Resolved "entry with this name already exists" installation error
-
-### v1.0.0 - Initial Release
-- ✨ Complete rebranding to `n8n-nodes-langfuse-prompt`
-- 📝 Enhanced documentation with visual improvements
-- 🔧 Updated package configuration and metadata
-- 🚀 Ready for npm publication
-
----
 
 <div align="center">
 
