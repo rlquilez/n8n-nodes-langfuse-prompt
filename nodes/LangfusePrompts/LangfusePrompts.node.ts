@@ -107,7 +107,6 @@ export class LangfusePrompts implements INodeType {
 				displayName: 'Prompt Label',
 				name: 'label',
 				type: 'string',
-				required: false,
 				default: '',
 				description: 'Deployment label of the prompt version to retrieve (optional)',
 				displayOptions: {
@@ -173,8 +172,8 @@ export class LangfusePrompts implements INodeType {
 				typeOptions: {
 					minValue: 1,
 				},
-				default: '',
-				description: 'Max number of results to return (optional, defaults to 50)',
+				default: 50,
+				description: 'Max number of results to return',
 				displayOptions: {
 					show: {
 						resource: ['prompt'],
@@ -184,7 +183,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						qs: {
-							limit: '={{$value || undefined}}',
+							limit: '={{$value}}',
 						},
 					},
 				},
