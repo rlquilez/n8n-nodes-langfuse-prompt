@@ -107,9 +107,9 @@ export class LangfusePrompts implements INodeType {
 				displayName: 'Prompt Label',
 				name: 'label',
 				type: 'string',
-				required: true,
-				default: 'production',
-				description: 'Deployment label of the prompt version to retrieve (defaults to Production)',
+				required: false,
+				default: '',
+				description: 'Deployment label of the prompt version to retrieve (optional)',
 				displayOptions: {
 					show: {
 						resource: ['prompt'],
@@ -119,7 +119,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						qs: {
-							label: '={{$value}}',
+							label: '={{$value || undefined}}',
 						},
 					},
 				},
@@ -139,7 +139,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						qs: {
-							version: '={{$value}}',
+							version: '={{$value || undefined}}',
 						},
 					},
 				},
@@ -150,8 +150,8 @@ export class LangfusePrompts implements INodeType {
 				displayName: 'Page',
 				name: 'page',
 				type: 'number',
-				default: 1,
-				description: 'Page number for pagination',
+				default: '',
+				description: 'Page number for pagination (optional, defaults to 1)',
 				displayOptions: {
 					show: {
 						resource: ['prompt'],
@@ -161,7 +161,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						qs: {
-							page: '={{$value}}',
+							page: '={{$value || undefined}}',
 						},
 					},
 				},
@@ -173,8 +173,8 @@ export class LangfusePrompts implements INodeType {
 				typeOptions: {
 					minValue: 1,
 				},
-				default: 50,
-				description: 'Max number of results to return',
+				default: '',
+				description: 'Max number of results to return (optional, defaults to 50)',
 				displayOptions: {
 					show: {
 						resource: ['prompt'],
@@ -184,7 +184,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						qs: {
-							limit: '={{$value}}',
+							limit: '={{$value || undefined}}',
 						},
 					},
 				},
@@ -204,7 +204,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						qs: {
-							name: '={{$value}}',
+							name: '={{$value || undefined}}',
 						},
 					},
 				},
@@ -224,7 +224,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						qs: {
-							tag: '={{$value}}',
+							tag: '={{$value || undefined}}',
 						},
 					},
 				},
@@ -244,7 +244,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						qs: {
-							label: '={{$value}}',
+							label: '={{$value || undefined}}',
 						},
 					},
 				},
@@ -264,7 +264,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						qs: {
-							searchQuery: '={{$value}}',
+							searchQuery: '={{$value || undefined}}',
 						},
 					},
 				},
@@ -296,13 +296,15 @@ export class LangfusePrompts implements INodeType {
 					show: {
 						resource: ['prompt'],
 						operation: ['list'],
-						searchQuery: ['/^.+$/'], // Only show when searchQuery is not empty
+					},
+					hide: {
+						searchQuery: [''],
 					},
 				},
 				routing: {
 					request: {
 						qs: {
-							searchType: '={{$value === "both" ? ["id", "content"] : [$value]}}',
+							searchType: '={{$value === "both" ? ["id", "content"] : $value === "content" ? ["content"] : ["id"]}}',
 						},
 					},
 				},
@@ -414,8 +416,8 @@ export class LangfusePrompts implements INodeType {
 				displayName: 'Labels',
 				name: 'labels',
 				type: 'string',
-				default: 'production',
-				description: 'Comma-separated list of labels for the prompt',
+				default: '',
+				description: 'Comma-separated list of labels for the prompt (optional)',
 				displayOptions: {
 					show: {
 						resource: ['prompt'],
@@ -425,7 +427,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						body: {
-							labels: '={{$value.split(",").map(l => l.trim()).filter(l => l)}}',
+							labels: '={{$value ? $value.split(",").map(l => l.trim()).filter(l => l) : []}}',
 						},
 					},
 				},
