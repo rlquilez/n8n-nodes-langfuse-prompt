@@ -6,7 +6,14 @@
 
 [![npm version](https://badge.fury.io/js/n8n-nodes-langfuse-prompt.svg)](https://www.npmjs.com/package/n8n-nodes-langfuse-prompt)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![n8n Community Node](https://img.shields.io/badge/n8n-Community%20Node-FF6B6B.svg)](h## 📈 Version History
+[![n8n Community Node](https://img.shields.io/badge/n8n-Community%20## 📈 Version History
+
+### v1.3.2 - Documentation Consistency & Structure Fix
+- 🗂️ **Cleaned Documentation** - Removed duplicated version history from top section
+- 🔧 **Fixed References** - Removed obsolete "Include Description" parameter references
+- 📝 **Complete History** - Updated version history with all missing releases (v1.3.1, v1.3.0, v1.2.0)
+- 🎯 **Consistency** - Ensured documentation matches actual node functionality
+- 📋 **Table of Contents** - Added MCP Server Integration section to navigation
 
 ### v1.3.1 - Documentation & Description Corrections
 - 🔧 **Accurate Descriptions** - Corrected misleading references to "CRUD operations" and "Update/Delete" functionality
@@ -31,14 +38,15 @@
 - 🔧 **Removed Unsupported Operations** - Removed Update and Delete operations (not supported by Langfuse public API v2)
 - ✅ **API Compliance** - Now only includes operations officially supported by Langfuse public API
 - 📝 **Clear Documentation** - Added explanation about API limitations and workarounds
-- 🎯 **Reliable Operations** - Focus on Create, Get, and List operations that work correctlydocs.n8n.io/integrations/community-nodes/)
+- 🎯 **Reliable Operations** - Focus on Create, Get, and List operations that work correctly6B6B.svg)](https://docs.n8n.io/integrations/community-nodes/)
 
 </div>
 
-## 📋 Table of Contents
+## � Table of Contents
 
 - [✨ Features](#-features)
-- [📦 Installation](#-installation)
+- [� Installation](#-installation)
+- [🤖 MCP Server Integration](#-mcp-server-integration)
 - [🔐 Credentials](#-credentials)
 - [🎯 Operations](#-operations)
 - [📝 Usage Examples](#-usage-examples)
@@ -61,7 +69,6 @@
 - ✅ **Multiple Types** - Support for both text and chat prompts
 - ✅ **Create & Read Operations** - Get, List, and Create prompts with full API support
 - ✅ **Version Control** - Retrieve specific prompt versions and create new versions
-- ✅ **Optional Descriptions** - Choose whether to fetch prompt descriptions in list operations
 - ✅ **Bulk Operations** - Process multiple prompts efficiently
 - ✅ **Full Text Search** - Search prompts by content using "Names & Tags", "Full Text", or "Both" modes
 - ✅ **MCP Server Integration** - Compatible as a tool in n8n's MCP (Model Context Protocol) server workflows
@@ -204,7 +211,6 @@ Browse and search through all available prompts with pagination and **full text 
   - **Names & Tags**: Search in prompt names and tags only (faster)
   - **Full Text**: Search in all fields including prompt content (comprehensive)
   - **Both**: Search in both metadata and content
-- `Include Description` *(optional)*: Include prompt descriptions in response
 
 **🔍 Full Text Search Examples:**
 - Search for "customer support" across all prompt content
@@ -319,19 +325,6 @@ Create new prompt versions for testing:
   "promptContent": "Hello {{userName}}! Welcome to our improved service!",
   "labels": "testing,latest",
   "tags": "welcome,improved"
-}
-```
-
-### Example 4: List with Optional Descriptions
-
-Get all prompts with their descriptions included:
-
-```json
-{
-  "resource": "prompt",
-  "operation": "list",
-  "includeDescription": true,
-  "tagFilter": "production"
 }
 ```
 
