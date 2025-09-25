@@ -27,9 +27,8 @@ Enhanced Langfuse integration for n8n with advanced Prompt Management capabiliti
 - **Create Prompt**: Create new text or chat prompts directly from n8n workflows
 
 ### Advanced Search Capabilities
-- **Full Text Search**: Search through prompt content, names, and tags
-- **Smart Filtering**: Filter by name, tags, labels, and creation dates
-- **Search Modes**: Choose between "Names & Tags", "Full Text", or "Both"
+- **Filter by Name**: Exact match filtering by prompt name
+- **Smart Filtering**: Filter by tags, labels, and versions
 - **Pagination Support**: Handle large prompt collections efficiently
 
 ### Modern Integration Features
@@ -93,11 +92,11 @@ This node supports **Model Context Protocol (MCP)**, enabling AI agents to inter
   "label": "production"
 }
 
-// Or search for prompts:
+// Or filter prompts:
 {
   "operation": "list",
-  "searchQuery": "customer satisfaction",
-  "searchType": "Full Text"
+  "nameFilter": "customer-support",
+  "labelFilter": "production"
 }
 ```
 
@@ -126,16 +125,15 @@ Retrieve a specific prompt by name.
 
 ### List Prompts
 
-Search and browse your prompts with advanced filtering.
+Browse and filter your prompts using Langfuse API v2 parameters.
 
 **Optional Parameters:**
-- nameFilter: Filter by prompt name
-- tagFilter: Filter by tag
-- labelFilter: Filter by label  
-- searchQuery: Full text search term
-- searchType: Search mode ("Names & Tags", "Full Text", or "Both")
-- page: Page number for pagination
-- limit: Items per page
+- nameFilter: Filter by exact prompt name match
+- tagFilter: Filter by specific tag
+- labelFilter: Filter by specific label
+- versionFilter: Filter by version number
+- page: Page number for pagination  
+- limit: Items per page (1-100, default 50)
 
 ### Create Prompt
 
@@ -165,13 +163,13 @@ Create new text or chat prompts.
 }
 ```
 
-### Example 2: Search Prompts by Content
+### Example 2: Filter Prompts by Tag
 
 ```json
 {
   "operation": "list", 
-  "searchQuery": "email response",
-  "searchType": "Full Text",
+  "tagFilter": "customer-support",
+  "labelFilter": "production",
   "limit": 10
 }
 ```
@@ -276,10 +274,10 @@ n8n start
 - Check n8n version compatibility
 - Verify package installation
 
-**Search not working?**
-- Ensure searchQuery is provided
-- Check searchType parameter
-- Verify Langfuse instance version
+**Filtering not working?**
+- Ensure filter parameters are correctly formatted
+- Check that values match exactly (especially for name filter)  
+- Verify Langfuse instance version compatibility
 
 **API connection issues?**
 - Verify Langfuse credentials

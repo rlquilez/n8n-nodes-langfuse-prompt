@@ -193,7 +193,7 @@ export class LangfusePrompts implements INodeType {
 				name: 'nameFilter',
 				type: 'string',
 				default: '',
-				description: 'Filter prompts by name (optional)',
+				description: 'Filter prompts by exact name match (optional)',
 				displayOptions: {
 					show: {
 						resource: ['prompt'],
@@ -213,7 +213,7 @@ export class LangfusePrompts implements INodeType {
 				name: 'tagFilter',
 				type: 'string',
 				default: '',
-				description: 'Filter prompts by tag (optional)',
+				description: 'Filter prompts by specific tag (optional)',
 				displayOptions: {
 					show: {
 						resource: ['prompt'],
@@ -233,7 +233,7 @@ export class LangfusePrompts implements INodeType {
 				name: 'labelFilter',
 				type: 'string',
 				default: '',
-				description: 'Filter prompts by label (optional)',
+				description: 'Filter prompts by specific label (optional)',
 				displayOptions: {
 					show: {
 						resource: ['prompt'],
@@ -249,11 +249,11 @@ export class LangfusePrompts implements INodeType {
 				},
 			},
 			{
-				displayName: 'Search Query',
-				name: 'searchQuery',
-				type: 'string',
+				displayName: 'Version Filter',
+				name: 'versionFilter',
+				type: 'number',
 				default: '',
-				description: 'Search text across prompt names, tags, and content (full text search)',
+				description: 'Filter prompts by specific version number (optional)',
 				displayOptions: {
 					show: {
 						resource: ['prompt'],
@@ -263,47 +263,7 @@ export class LangfusePrompts implements INodeType {
 				routing: {
 					request: {
 						qs: {
-							searchQuery: '={{$value || undefined}}',
-						},
-					},
-				},
-			},
-			{
-				displayName: 'Search Type',
-				name: 'searchType',
-				type: 'options',
-				options: [
-					{
-						name: 'Names & Tags',
-						value: 'id',
-						description: 'Search in prompt names and tags only (faster)',
-					},
-					{
-						name: 'Full Text',
-						value: 'content',
-						description: 'Search in all fields including prompt content (comprehensive)',
-					},
-					{
-						name: 'Both',
-						value: 'both',
-						description: 'Search in both metadata (names, tags) and content',
-					},
-				],
-				default: 'id',
-				description: 'Choose what fields to search in',
-				displayOptions: {
-					show: {
-						resource: ['prompt'],
-						operation: ['list'],
-					},
-					hide: {
-						searchQuery: [''],
-					},
-				},
-				routing: {
-					request: {
-						qs: {
-							searchType: '={{$value === "both" ? ["id", "content"] : $value === "content" ? ["content"] : ["id"]}}',
+							version: '={{$value || undefined}}',
 						},
 					},
 				},
