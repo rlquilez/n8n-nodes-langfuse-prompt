@@ -7,7 +7,7 @@ export class LangfusePrompts implements INodeType {
 		icon: 'file:langfuse.svg',
 		group: ['transform'],
 		version: 1,
-		description: 'Advanced Langfuse Prompt Management with complete CRUD operations',
+		description: 'Advanced Langfuse Prompt Management for retrieving, searching, and creating prompts',
 		defaults: {
 			name: 'Langfuse Prompts',
 		},

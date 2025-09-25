@@ -30,10 +30,7 @@
    - Configuração de labels, tags e config
    - URL: `POST /api/public/v2/prompts`
 
-4. **Update Prompt** (existente, mantida)
-   - Atualiza labels de prompts existentes
-   - Gerenciamento de ambientes
-   - URL: `PATCH /api/public/v2/prompts/{name}`
+**Nota**: As operações Update e Delete não são suportadas pela API pública do Langfuse v2. Apenas operações de Get, List e Create são implementadas.
 
 #### Autenticação
 - **Método**: HTTP Basic Authentication
@@ -78,19 +75,15 @@ docker/Dockerfile              (ATUALIZADO - nome do pacote)
 - `tags` (opcional): Tags separadas por vírgula
 - `config` (opcional): Configuração JSON
 
-#### Update Prompt:
-- `updatePromptName` (obrigatório): Nome do prompt
-- `promptVersion` (obrigatório): Versão do prompt
-- `newLabels` (obrigatório): Novas labels separadas por vírgula
-
 ### 5. Melhorias Implementadas
 
 - **Tratamento de Erros**: Suporte ao `continueOnFail()`
 - **Validação de Entrada**: Verificação de parâmetros obrigatórios
 - **Flexibilidade**: Suporte a diferentes tipos de prompt
 - **Paginação**: Controle de limite e páginas para listagem
-- **Filtros**: Busca por nome e tags
+- **Filtros**: Busca por nome e tags com suporte a busca full-text
 - **Configuração**: Suporte a configurações personalizadas
+- **MCP Integration**: Compatível como ferramenta em workflows de IA
 
 ### 6. Atualizações de Rebranding
 
@@ -123,7 +116,7 @@ docker/Dockerfile              (ATUALIZADO - nome do pacote)
 1. Instalar o pacote: `npm install n8n-nodes-langfuse-prompt`
 2. Configurar as credenciais Langfuse no n8n
 3. Usar o nó "Langfuse" nos workflows
-4. Selecionar a operação desejada (Get/List/Create/Update)
+4. Selecionar a operação desejada (Get/List/Create)
 5. Configurar os parâmetros específicos de cada operação
 
 ## Próximos Passos Executados

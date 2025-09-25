@@ -8,6 +8,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![n8n Community Node](https://img.shields.io/badge/n8n-Community%20Node-FF6B6B.svg)](h## 📈 Version History
 
+### v1.3.1 - Documentation & Description Corrections
+- 🔧 **Accurate Descriptions** - Corrected misleading references to "CRUD operations" and "Update/Delete" functionality
+- 📝 **Honest Documentation** - Updated all descriptions to accurately reflect only supported operations (Get, List, Create)
+- ✅ **Transparency** - Clear explanation of API limitations and supported operations
+- 🎯 **Focused Messaging** - Emphasize what the node does well rather than unsupported features
+
 ### v1.3.0 - MCP Integration & UI Improvements
 - 🤖 **MCP Server Integration** - Added `usableAsTool: true` for compatibility with n8n's Model Context Protocol (MCP) workflows
 - 🔍 **Full Text Search** - Enhanced List Prompts with comprehensive search capabilities (Names & Tags, Full Text, Both)
@@ -44,19 +50,17 @@
 
 ## ✨ Features
 
-### 🎯 Complete Prompt Management
+### 🎯 Comprehensive Prompt Management
 - **🔍 Get Prompt**: Retrieve specific prompts by name, version, or label
 - **📋 List Prompts**: Browse all prompts with advanced filtering and pagination
 - **➕ Create Prompt**: Create new text or chat prompts directly from n8n workflows
-- **✏️ Update Prompt**: Update existing prompts with new content, config and metadata
-- **🗑️ Delete Prompt**: Remove prompts permanently from Langfuse
 
 ### 🚀 Advanced Capabilities
 - ✅ **Smart Filtering** - Filter by name, tags, and labels
 - ✅ **Pagination Support** - Handle large prompt collections efficiently
 - ✅ **Multiple Types** - Support for both text and chat prompts
-- ✅ **Complete CRUD** - Full Create, Read, Update, Delete operations
-- ✅ **Version Control** - Retrieve and update specific prompt versions
+- ✅ **Create & Read Operations** - Get, List, and Create prompts with full API support
+- ✅ **Version Control** - Retrieve specific prompt versions and create new versions
 - ✅ **Optional Descriptions** - Choose whether to fetch prompt descriptions in list operations
 - ✅ **Bulk Operations** - Process multiple prompts efficiently
 - ✅ **Full Text Search** - Search prompts by content using "Names & Tags", "Full Text", or "Both" modes
@@ -256,18 +260,15 @@ Create new text or chat prompts directly from your n8n workflow.
 ]
 ```
 
-### Note on Update/Delete Operations
+### API Operations Supported
 
-**Important**: Update and Delete operations are **not supported** by the Langfuse public API v2. These operations are only available through the Langfuse web interface or internal TRPC endpoints.
+This node implements all operations officially supported by the Langfuse public API v2:
 
-The Langfuse API v2 public endpoints support:
-- ✅ `GET /api/public/v2/prompts` - List prompts
-- ✅ `POST /api/public/v2/prompts` - Create prompt  
-- ✅ `GET /api/public/v2/prompts/[name]` - Get specific prompt
-- ❌ `PUT/PATCH /api/public/v2/prompts/[name]` - Update not available via public API
-- ❌ `DELETE /api/public/v2/prompts/[name]` - Delete not available via public API
+- ✅ `GET /api/public/v2/prompts` - List prompts with filtering and search
+- ✅ `POST /api/public/v2/prompts` - Create new prompts  
+- ✅ `GET /api/public/v2/prompts/[name]` - Get specific prompt by name
 
-For updates, you can create new versions of existing prompts using the Create operation. For deletions, use the Langfuse web interface.
+**Note**: Update and Delete operations are not available via the Langfuse public API. For prompt modifications, create new versions using the Create operation. For deletions, use the Langfuse web interface.
 
 ## 📝 Usage Examples
 
